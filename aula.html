@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aula Virtual | Mamás Fuertes</title>
+  <meta name="description" content="Panel de estudiante de Mamás Fuertes. Accede a tus clases en video, temarios interactivos y guías de entrenamiento.">
+  
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/chat.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    /* Estilos específicos del Aula Virtual */
+    .classroom-layout {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 2rem;
+      padding: 2rem 0 4rem 0;
+    }
+
+    .classroom-main-player {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .video-frame-container {
+      background: #000;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    }
+
+    .video-frame-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .lesson-meta-header {
+      background: var(--bg-card);
+      padding: 1.75rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .lesson-controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .btn-completed {
+      background-color: var(--accent-green) !important;
+      color: white !important;
+    }
+
+    /* Tabs del Alumno (Temario, Recursos, Notas) */
+    .classroom-tabs-nav {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 2px solid var(--border-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .classroom-nav-tab {
+      background: transparent;
+      border: none;
+      padding: 0.75rem 1.25rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all var(--transition-fast);
+    }
+
+    .classroom-nav-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    .classroom-tab-pane {
+      display: none;
+    }
+
+    .classroom-tab-pane.active {
+      display: block;
+    }
+
+    /* Sidebar del Aula */
+    .classroom-sidebar {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      padding: 1.5rem;
+      height: fit-content;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      position: sticky;
+      top: 6rem;
+    }
+
+    .classroom-progress-box {
+      background: var(--primary-light);
+      padding: 1.25rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(212, 93, 59, 0.2);
+    }
+
+    .progress-bar-wrap {
+      height: 8px;
+      background-color: rgba(212, 93, 59, 0.2);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin: 0.6rem 0;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent-green) 100%);
+      width: 0%;
+      transition: width var(--transition-smooth);
+    }
+
+    .classroom-module-block {
+      margin-bottom: 1.25rem;
+    }
+
+    .classroom-module-heading {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .classroom-lesson-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.65rem 0.75rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      margin-bottom: 0.35rem;
+      border: 1px solid transparent;
+    }
+
+    .classroom-lesson-item:hover {
+      background-color: var(--primary-light);
+    }
+
+    .classroom-lesson-item.active {
+      background-color: var(--primary-light);
+      border-color: var(--primary);
+      font-weight: 600;
+    }
+
+    .lesson-check-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      background-color: var(--border-color);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .classroom-lesson-item.completed .lesson-check-icon {
+      background-color: var(--accent-green);
+    }
+
+    .lesson-info-text {
+      flex: 1;
+      font-size: 0.85rem;
+    }
+
+    .lesson-duration-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Recursos & Notas */
+    .resource-download-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      background: var(--bg-surface);
+      border-radius: var(--radius-sm);
+      margin-bottom: 0.75rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .notes-textarea {
+      width: 100%;
+      height: 180px;
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      outline: none;
+      font-family: inherit;
+      resize: vertical;
+      margin-bottom: 1rem;
+    }
+
+    .notes-textarea:focus {
+      border-color: var(--primary);
+    }
+
+    @media (max-width: 992px) {
+      .classroom-layout {
+        grid-template-columns: 1fr;
+      }
+      .classroom-sidebar {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. CABECERA DEL AULA VIRTUAL
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">🌸</div>
+        <div>Mamás <span class="highlight">Fuertes</span> <span style="font-size: 0.9rem; font-weight: normal; color: var(--text-muted);">| Aula Virtual</span></div>
+      </a>
+
+      <div class="nav-actions">
+        <!-- Selector de Idioma -->
+        <div class="lang-selector">
+          <button class="lang-btn active" data-lang="es">🇪🇸 ES</button>
+          <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+        </div>
+
+        <a href="index.html" class="btn btn-secondary btn-sm" data-i18n="classroom_btn_back">
+          ← Volver a la Tienda
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       2. CONTENIDO PRINCIPAL DEL AULA
+       ======================================================================== -->
+  <main class="container">
+    <!-- Barra superior de bienvenida & Selector de Curso -->
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0 0.5rem 0; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h1 style="font-size: 1.6rem;" data-i18n="classroom_welcome">¡Hola, campeona! Lista para tu sesión de hoy 💪</h1>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          <span id="classroomCourseTitle">Cargando curso...</span> • <span id="classroomInstructor">-</span>
+        </p>
+      </div>
+
+      <!-- Selector de Curso Activo -->
+      <div>
+        <select id="classroomCourseSelect" class="form-control" style="font-weight: 600; cursor: pointer; padding: 0.6rem 1rem;">
+          <!-- Opciones dinámicas -->
+        </select>
+      </div>
+    </div>
+
+    <!-- Layout Grid del Aula -->
+    <div class="classroom-layout">
+      
+      <!-- Columna Izquierda: Reproductor & Pestañas de Contenido -->
+      <div class="classroom-main-player">
+        
+        <!-- Reproductor de Video -->
+        <div class="video-frame-container">
+          <video id="classroomVideoPlayer" controls poster="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+            Tu navegador no soporta reproducción de video HTML5.
+          </video>
+        </div>
+
+        <!-- Encabezado de la Lección y Controles -->
+        <div class="lesson-meta-header">
+          <div>
+            <h2 id="currentLessonTitle" style="font-size: 1.35rem; margin-bottom: 0.5rem;">Cargando lección...</h2>
+            <p id="currentLessonSummary" style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;"></p>
+          </div>
+
+          <div class="lesson-controls-bar">
+            <button class="btn btn-secondary btn-sm" id="btnToggleComplete" data-i18n="classroom_mark_completed">
+              ✓ Marcar como Completada
+            </button>
+            <div style="font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.4rem;">
+              <span>💡</span> <em>Recuerda mantener tu respiración diafragmática relajada durante cada serie.</em>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pestañas de Contenido del Alumno -->
+        <div class="lesson-meta-header">
+          <div class="classroom-tabs-nav">
+            <button class="classroom-nav-tab active" data-tab="tabResources" data-i18n="classroom_tab_resources">Materiales y Recursos</button>
+            <button class="classroom-nav-tab" data-tab="tabNotes" data-i18n="classroom_tab_notes">Mis Notas Personales</button>
+          </div>
+
+          <!-- Pestaña 1: Recursos Descargables -->
+          <div class="classroom-tab-pane active" id="tabResources">
+            <div class="resource-download-card">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="font-size: 1.5rem;">📄</span>
+                <div>
+                  <strong data-i18n="classroom_download_guide">Guía de Nutrición y Recetario Posparto (PDF)</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Tamaño: 2.4 MB • Descarga instantánea</div>
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="downloadMockFile('Guia_Nutricion_Mamas_Fuertes.pdf')">Descargar</button>
+            </div>
+
+            <div class="resource-download-card">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="font-size: 1.5rem;">📅</span>
+                <div>
+                  <strong data-i18n="classroom_download_planner">Planificador Semanal de Hábitos y Rutinas (PDF)</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Tamaño: 1.1 MB • Listo para imprimir</div>
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="downloadMockFile('Planificador_Semanal.pdf')">Descargar</button>
+            </div>
+
+            <div class="resource-download-card">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="font-size: 1.5rem;">🧘‍♀️</span>
+                <div>
+                  <strong data-i18n="classroom_download_checklist">Checklist de Postura Segura y Cuidado de Espalda (PDF)</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Tamaño: 850 KB • Consejos ergonómicos</div>
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="downloadMockFile('Checklist_Postura_Segura.pdf')">Descargar</button>
+            </div>
+          </div>
+
+          <!-- Pestaña 2: Notas Personales -->
+          <div class="classroom-tab-pane" id="tabNotes">
+            <textarea id="studentNotesArea" class="notes-textarea" placeholder="Escribe aquí tus sensaciones, pesos utilizados o dudas para la próxima sesión..." data-i18n="classroom_notes_placeholder"></textarea>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <button class="btn btn-primary btn-sm" id="saveNotesBtn" data-i18n="classroom_save_notes">Guardar Notas</button>
+              <span id="notesFeedback" style="color: var(--accent-green); font-weight: 600; font-size: 0.85rem;"></span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Columna Derecha: Sidebar con Barra de Progreso y Temario por Módulos -->
+      <aside class="classroom-sidebar">
+        <!-- Progreso General -->
+        <div class="classroom-progress-box">
+          <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 0.9rem;">
+            <span data-i18n="classroom_progress_title">Tu Progreso:</span>
+            <span id="classroomProgressPercent" style="color: var(--primary);">0%</span>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="classroomProgressFill"></div>
+          </div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center;">
+            ¡Cada paso cuenta, sigue así! 💪
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.1rem; margin-bottom: 1rem;" data-i18n="classroom_tab_modules">Temario & Lecciones</h3>
+        
+        <!-- Lista de Módulos y Lecciones -->
+        <div id="classroomModulesList">
+          <!-- Renderizado dinámico por js/classroom.js -->
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       3. CHATBOT ASISTENTE VIRTUAL INTEGRADO EN EL AULA
+       ======================================================================== -->
+  <button class="chat-launcher-btn" id="chatLauncherBtn" aria-label="Abrir chat con coach">
+    <span>💬</span>
+    <div class="chat-badge-pulse"></div>
+  </button>
+
+  <div class="chat-widget-box" id="chatWidgetBox">
+    <div class="chat-header">
+      <div class="chat-assistant-info">
+        <div class="chat-avatar">🌸</div>
+        <div class="chat-meta">
+          <div class="chat-name" data-i18n="chat_header_name">Alma - Asistente Mamás Fuertes</div>
+          <div class="chat-status"><span class="chat-status-dot"></span> <span data-i18n="chat_header_status">En línea 24/7</span></div>
+        </div>
+      </div>
+      <button class="chat-close-btn" id="chatCloseBtn" aria-label="Cerrar chat">✕</button>
+    </div>
+
+    <div class="chat-messages-body" id="chatMessagesBody">
+      <div class="chat-typing" id="chatTypingIndicator">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="chat-quick-actions">
+      <button class="chat-quick-pill" data-prompt="diástasis">💡 ¿Cómo saber si estoy haciendo bien el ejercicio?</button>
+      <button class="chat-quick-pill" data-prompt="tiempo">⏱️ ¿Puedo pausar y retomar mañana?</button>
+      <button class="chat-quick-pill" data-prompt="whatsapp">💬 Hablar con una asesora por WhatsApp</button>
+    </div>
+
+    <div class="chat-footer">
+      <form class="chat-form" id="chatForm">
+        <input type="text" id="chatInput" placeholder="Escribe tu duda sobre la clase..." autocomplete="off">
+        <button type="submit" class="chat-send-btn" aria-label="Enviar">➤</button>
+      </form>
+      <div class="chat-whatsapp-banner">
+        <a href="javascript:void(0)" onclick="openWhatsAppDirect()" class="chat-whatsapp-link">
+          <span>📲</span> <span>Chatear por WhatsApp con una Coach</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts JavaScript -->
+  <script src="js/i18n.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/classroom.js"></script>
+</body>
+</html>

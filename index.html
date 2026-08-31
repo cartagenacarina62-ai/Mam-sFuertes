@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mamás Fuertes | Maternidad Primeriza a los 30-35, Crianza & Bienestar</title>
+  <meta name="description" content="Plataforma de cursos online para madres primerizas de 30 a 35 años, nutrición infantil por edades, hijos hiperactivos/TDAH y fitness para mamás.">
+  
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/chat.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. CABECERA & NAVEGACIÓN
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">🌸</div>
+        <div>Mamás <span class="highlight">Fuertes</span></div>
+      </a>
+
+      <!-- Menú de Navegación Principal -->
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#inicio" class="nav-link" data-i18n="nav_home">Inicio</a></li>
+        <li><a href="#cursos" class="nav-link" data-i18n="nav_courses">Cursos</a></li>
+        <li><a href="#membresias" class="nav-link" data-i18n="nav_memberships">Membresías</a></li>
+        <li><a href="#beneficios" class="nav-link" data-i18n="nav_benefits">Beneficios</a></li>
+        <li><a href="#testimonios" class="nav-link" data-i18n="nav_testimonials">Testimonios</a></li>
+        <li><a href="#faq" class="nav-link" data-i18n="nav_faq">FAQ</a></li>
+      </ul>
+
+      <!-- Acciones de Cabecera (Selector de Idioma & Aula) -->
+      <div class="nav-actions">
+        <!-- Selector de Idioma -->
+        <div class="lang-selector">
+          <button class="lang-btn active" data-lang="es">🇪🇸 ES</button>
+          <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+        </div>
+
+        <!-- Acceso al Aula Virtual -->
+        <a href="aula.html" class="btn btn-secondary btn-sm" style="display: flex; align-items: center; gap: 0.4rem;">
+          <span>🎓</span>
+          <span data-i18n="nav_classroom">Mi Aula</span>
+        </a>
+
+        <!-- Botón Menú Móvil -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menú">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       2. HERO SECTION
+       ======================================================================== -->
+  <section class="hero-section" id="inicio">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="badge-pill" data-i18n="hero_badge">
+            ✨ Crianza, Alimentación, Primerizas (30-35) & Bienestar Maternal
+          </div>
+          <h1>
+            <span data-i18n="hero_title">Acompaña cada etapa de tus hijos, su nutrición y tu propia recuperación como mamá</span>
+          </h1>
+          <p class="hero-subtitle" data-i18n="hero_subtitle">
+            Cursos online guiados por ginecólogas, neuropsicólogas, pediatras y entrenadoras: primerizas de 30-35 años, alimentación por edades (BLW a teens), TDAH/hiperactividad, sueño y fitness.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#cursos" class="btn btn-primary" data-i18n="hero_cta_courses">Explorar Todos los Cursos</a>
+            <a href="#membresias" class="btn btn-secondary" data-i18n="hero_cta_membership">Membresía Ilimitada</a>
+          </div>
+
+          <div class="hero-stats-row">
+            <div class="stat-item">
+              <span class="stat-num" data-i18n="hero_stat_mothers">+5,000</span>
+              <span class="stat-label">Familias</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">⭐ 4.9/5</span>
+              <span class="stat-label" data-i18n="hero_stat_rating">Calificación Promedio</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num" data-i18n="hero_stat_programs">+220</span>
+              <span class="stat-label">Clases en Video</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image-wrapper">
+          <div class="hero-image-card">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1000&q=80" alt="Madre primeriza feliz y segura a los 30-35 años">
+          </div>
+          <div class="hero-floating-badge">
+            <div class="floating-icon">🌸</div>
+            <div class="floating-text">
+              <div class="badge-title">Primerizas 30-35 & Crianza</div>
+              <div class="badge-desc" data-i18n="hero_guarantee">Garantía de 14 días</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. QUIZ INTERACTIVO / ASESOR VIRTUAL
+       ======================================================================== -->
+  <section class="container">
+    <div class="quiz-section">
+      <div class="section-header" style="margin-bottom: 2rem;">
+        <div class="badge-pill" data-i18n="quiz_badge">🎯 Asesor Virtual Personalizado</div>
+        <h2 data-i18n="quiz_title">¿Cuál es el curso ideal para la etapa de tu hijo o tu cuerpo?</h2>
+        <p data-i18n="quiz_subtitle">Responde 3 preguntas rápidas y te recomendaremos el curso o membresía que mejor se adapta a lo que necesitas hoy.</p>
+      </div>
+
+      <div class="quiz-container">
+        <div class="quiz-card" id="quizCard">
+          <div class="quiz-progress-bar" id="quizProgressBar">
+            <div class="quiz-progress-fill" id="quizProgressFill"></div>
+          </div>
+
+          <!-- Pregunta 1: Etapa de la Maternidad / Crianza -->
+          <div id="quizStep1">
+            <h3 class="quiz-question-title" data-i18n="quiz_q1_title">1. ¿En qué etapa se encuentra tu familia o tu maternidad?</h3>
+            <div class="quiz-options-list">
+              <label class="quiz-option-label">
+                <input type="radio" name="q1" value="opt1" class="quiz-option-radio">
+                <span data-i18n="quiz_q1_opt1">Embarazo o Primeriza entre 30 y 35 años (cuidados especiales y recuperación)</span>
+              </label>
+              <label class="quiz-option-label">
+                <input type="radio" name="q1" value="opt2" class="quiz-option-radio">
+                <span data-i18n="quiz_q1_opt2">Posparto y Bebé de 0 a 12 meses (lactancia, sueño, inicio de sólidos)</span>
+              </label>
+              <label class="quiz-option-label">
+                <input type="radio" name="q1" value="opt3" class="quiz-option-radio">
+                <span data-i18n="quiz_q1_opt3">Primera Infancia o Edad Escolar (1 a 11 años - rabietas, límites, rutinas, TDAH)</span>
+              </label>
+              <label class="quiz-option-label">
+                <input type="radio" name="q1" value="opt4" class="quiz-option-radio">
+                <span data-i18n="quiz_q1_opt4">Adolescencia (12 a 18 años - comunicación, pantallas, identidad)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Pregunta 2: Reto o Necesidad Principal -->
+          <div id="quizStep2" style="display: none;">
+            <h3 class="quiz-question-title" data-i18n="quiz_q2_title">2. ¿Cuál es tu necesidad o desafío principal?</h3>
+            <div class="quiz-options-list">
+              <label class="quiz-option-label">
+                <input type="radio" name="q2" value="opt1" class="quiz-option-radio">
+                <span data-i18n="quiz_q2_opt1">🌸 Maternidad primeriza a los 30-35: recuperación celular, balance laboral y culpa</span>
+              </label>
+              <label class="quiz-option-label">
+                <input type="radio" name="q2" value="opt2" class="quiz-option-radio">
+                <span data-i18n="quiz_q2_opt2">🧠 Comprender a mi hijo que es hiperactivo, inquieto o con TDAH / alta energía</span>
+              </label>
+              <label class="quiz-option-label">
+                <input type="radio" name="q2" value="opt3" class="quiz-option-radio">
+                <span data-i18n="quiz_q2_opt3">🥗 Alimentación adecuada según su edad (BLW, no come verduras, loncheras)</span>
+              </label>
+              <label class="quiz-option-label">
+                <input type="radio" name="q2" value="opt4" class="quiz-option-radio">
+                <span data-i18n="quiz_q2_opt4">💪 Salud física y fitness para mí (posparto, diástasis, fuerza en 20 min)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Pregunta 3: Modelo de Acceso -->
+          <div id="quizStep3" style="display: none;">
+            <h3 class="quiz-question-title" data-i18n="quiz_q3_title">3. ¿Qué tipo de acceso prefieres?</h3>
+            <div class="quiz-options-list">
+              <label class="quiz-option-label">
+                <input type="radio" name="q3" value="opt1" class="quiz-option-radio">
+                <span data-i18n="quiz_q3_opt1">Curso individual específico con acceso de por vida</span>
+              </label>
+              <label class="quiz-option-label">
+                <input type="radio" name="q3" value="opt2" class="quiz-option-radio">
+                <span data-i18n="quiz_q3_opt2">Membresía con acceso a TODOS los cursos (Primerizas 30-35, TDAH, Nutrición, Crianza, Fitness)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Resultado del Quiz -->
+          <div class="quiz-result-box" id="quizResultBox">
+            <div class="result-icon">✨🏆✨</div>
+            <div class="badge-pill" data-i18n="quiz_result_title">¡Tu curso recomendado está listo!</div>
+            <h3 id="quizResultCourseTitle">Curso Recomendado</h3>
+            <p id="quizResultCourseDesc">Descripción del curso recomendado adaptado a tus necesidades.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+              <button class="btn btn-primary" id="quizResultActionBtn" data-i18n="quiz_result_btn">Ver este Curso</button>
+              <button class="btn btn-secondary" id="quizRestartBtn" data-i18n="quiz_btn_restart">Repetir Test</button>
+            </div>
+          </div>
+
+          <div style="text-align: right; margin-top: 1.5rem;">
+            <button class="btn btn-primary" id="quizNextBtn" data-i18n="quiz_btn_next">Siguiente Pregunta</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. CATÁLOGO DE CURSOS ONLINE POR ETAPAS Y TEMAS
+       ======================================================================== -->
+  <section class="section-spacing" id="cursos">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-pill" data-i18n="courses_badge">📚 Formación Especializada por Etapas & Temas</div>
+        <h2 data-i18n="courses_title">Cursos Online: Crianza, Nutrición y Salud Familiar</h2>
+        <p data-i18n="courses_subtitle">Aprende con pediatras, ginecólogas, neuropsicólogas, nutriólogas y fisioterapeutas expertas.</p>
+      </div>
+
+      <!-- Filtros de Categorías -->
+      <div class="course-filters">
+        <button class="filter-btn active" data-category="all" data-i18n="courses_filter_all">Todos los Cursos</button>
+        <button class="filter-btn" data-category="postpartum" data-i18n="courses_filter_postpartum">🌸 Posparto & Primerizas 30-35</button>
+        <button class="filter-btn" data-category="nutrition" data-i18n="courses_filter_nutrition">🥗 Alimentación & Nutrición</button>
+        <button class="filter-btn" data-category="childhood" data-i18n="courses_filter_childhood">🧠 Crianza, TDAH & Etapas</button>
+        <button class="filter-btn" data-category="pregnancy" data-i18n="courses_filter_pregnancy">🤰 Embarazo & Parto</button>
+        <button class="filter-btn" data-category="babies" data-i18n="courses_filter_babies">👶 Bebés (0-12 m)</button>
+        <button class="filter-btn" data-category="teens" data-i18n="courses_filter_teens">🧑‍🦱 Adolescencia (12+ años)</button>
+        <button class="filter-btn" data-category="strength" data-i18n="courses_filter_strength">💪 Fuerza & Bienestar Mamá</button>
+      </div>
+
+      <!-- Grid de Cursos Dinámico -->
+      <div class="courses-grid" id="coursesGrid">
+        <!-- Renderizado por js/app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       5. PLANES DE MEMBRESÍA
+       ======================================================================== -->
+  <section class="section-spacing" id="membresias" style="background-color: var(--bg-surface);">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-pill" data-i18n="memberships_badge">👑 Acceso Total a Todas las Etapas</div>
+        <h2 data-i18n="memberships_title">Elige tu Membresía Mamás Fuertes</h2>
+        <p data-i18n="memberships_subtitle">Únete a la membresía y obtén acceso ilimitado a todos los cursos de crianza, madres primerizas (30-35), alimentación por edades, TDAH/hiperactividad y fitness, comunidad privada y sesiones en vivo.</p>
+      </div>
+
+      <div class="memberships-grid">
+        <!-- Plan Mensual -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 data-i18n="membership_monthly_title">Plan Mensual</h3>
+            <p data-i18n="membership_monthly_desc">Flexibilidad total para formarte y entrenar mes a mes.</p>
+            <div class="price-display">
+              <span class="price-currency">$</span>
+              <span class="price-number">15</span>
+              <span class="price-period" data-i18n="membership_monthly_period">/mes</span>
+            </div>
+          </div>
+
+          <ul class="pricing-features-list">
+            <li><span class="feature-check-icon">✓</span> <span data-i18n="membership_feat_all_courses">Acceso a los 11+ cursos completos (Primerizas 30-35, Nutrición, TDAH, Crianza, Fitness)</span></li>
+            <li><span class="feature-check-icon">✓</span> <span data-i18n="membership_feat_live">Sesiones mensuales de preguntas en vivo con ginecólogas, psicólogas y pediatras</span></li>
+            <li><span class="feature-check-icon">✓</span> <span data-i18n="membership_feat_community">Tribu privada de apoyo en WhatsApp</span></li>
+            <li><span class="feature-check-icon">✓</span> <span data-i18n="membership_feat_nutrition">Recetarios familiares y guías descargables en PDF</span></li>
+            <li><span class="feature-check-icon">✓</span> <span data-i18n="membership_feat_cancel">Cancela cuando quieras con 1 solo clic</span></li>
+          </ul>
+
+          <button class="btn btn-secondary btn-block" onclick="openCheckout('membership-monthly', 'membership')" data-i18n="membership_btn_select">Comenzar Membresía</button>
+        </div>
+
+        <!-- Plan Anual VIP (Destacado) -->
+        <div class="pricing-card featured">
+          <div class="featured-ribbon" data-i18n="membership_annual_badge">🔥 AHORRA 40% - EL MÁS ELEGIDO</div>
+          
+          <div class="pricing-header">
+            <h3 data-i18n="membership_annual_title">Plan Anual VIP</h3>
+            <p data-i18n="membership_annual_desc">El acompañamiento definitivo para tu salud, bienestar maternal y la crianza de tus hijos.</p>
+            <div class="price-display">
+              <span class="price-currency">$</span>
+              <span class="price-number">89</span>
+              <span class="price-period" data-i18n="membership_annual_period">/año (equivale a solo $7.40/mes)</span>
+            </div>
+          </div>
+
+          <ul class="pricing-features-list">
+            <li><span class="feature-check-icon">✓</span> <span data-i18n="membership_feat_all_courses">Acceso a los 11+ cursos completos (Primerizas 30-35, Nutrición, TDAH, Crianza, Fitness)</span></li>
+            <li><span class="feature-check-icon">✓</span> <span data-i18n="membership_feat_live">Sesiones mensuales de preguntas en vivo con ginecólogas, psicólogas y pediatras</span></li>
+            <li><span class="feature-check-icon">✓</span> <span data-i18n="membership_feat_community">Tribu privada de apoyo en WhatsApp</span></li>
+            <li><span class="feature-check-icon">✓</span> <span data-i18n="membership_feat_nutrition">Recetarios familiares y guías descargables en PDF</span></li>
+            <li><span class="feature-check-icon">✓</span> <span data-i18n="membership_feat_support">Soporte prioritario para resolver dudas</span></li>
+            <li><span class="feature-check-icon">✓</span> <span data-i18n="membership_feat_updates">Nuevas masterclasses y guías añadidas cada mes</span></li>
+          </ul>
+
+          <button class="btn btn-primary btn-block" onclick="openCheckout('membership-annual', 'membership')" data-i18n="membership_btn_select">Comenzar Membresía Anual</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       6. BENEFICIOS
+       ======================================================================== -->
+  <section class="section-spacing" id="beneficios">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-pill" data-i18n="benefits_badge">💪 ¿Por qué Mamás Fuertes?</div>
+        <h2 data-i18n="benefits_title">Acompañamiento profesional en cada paso de tu maternidad</h2>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon-box">🌸</div>
+          <h3 data-i18n="benefit_1_title">Especializado en Primerizas y Crianza</h3>
+          <p data-i18n="benefit_1_desc">Módulos diseñados para madres de 30-35 años, guías de alimentación infantil y herramientas para niños hiperactivos.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon-box">🩺</div>
+          <h3 data-i18n="benefit_2_title">Validado por especialistas</h3>
+          <p data-i18n="benefit_2_desc">Contenido creado por ginecólogas, neuropsicólogas, pediatras, nutriólogas infantiles y fisioterapeutas.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon-box">⏱️</div>
+          <h3 data-i18n="benefit_3_title">100% a tu propio ritmo</h3>
+          <p data-i18n="benefit_3_desc">Lecciones en video de 15-20 minutos diseñadas para la agenda real de mamás y familias.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon-box">🤝</div>
+          <h3 data-i18n="benefit_4_title">Tribu y Apoyo 24/7</h3>
+          <p data-i18n="benefit_4_desc">Comunidad de madres sin juzgar y asistente virtual inteligente para resolver dudas en cualquier momento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       7. TESTIMONIOS REALES
+       ======================================================================== -->
+  <section class="section-spacing" id="testimonios" style="background-color: var(--bg-surface);">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-pill" data-i18n="testimonials_badge">💖 Historias Reales</div>
+        <h2 data-i18n="testimonials_title">Familias que transformaron su crianza, nutrición y salud</h2>
+        <p data-i18n="testimonials_subtitle">Testimonios auténticos de madres que aplicaron nuestras herramientas en distintas edades y situaciones.</p>
+      </div>
+
+      <div class="testimonials-grid" id="testimonialsGrid">
+        <!-- Renderizado por js/app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       8. PREGUNTAS FRECUENTES (FAQ)
+       ======================================================================== -->
+  <section class="section-spacing" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-pill" data-i18n="faq_badge">❓ Resolvemos tus dudas</div>
+        <h2 data-i18n="faq_title">Preguntas Frecuentes</h2>
+      </div>
+
+      <div class="faq-container" id="faqContainer">
+        <!-- Renderizado por js/app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       9. PIE DE PÁGINA (FOOTER)
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: white;">
+            <div class="logo-icon">🌸</div>
+            <div>Mamás <span class="highlight" style="color: var(--accent-peach);">Fuertes</span></div>
+          </div>
+          <p data-i18n="footer_tagline">Empoderando a las madres en cada etapa del desarrollo de sus hijos: crianza consciente, nutrición saludable y bienestar integral.</p>
+          <div style="display: flex; gap: 0.75rem; font-size: 1.25rem;">
+            <a href="javascript:void(0)" onclick="openWhatsAppDirect()" title="WhatsApp: +504 9543-1299" style="cursor: pointer;">💬</a>
+            <span title="Instagram">📸</span>
+            <span title="Facebook">📘</span>
+            <span title="YouTube">🎥</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer_links_title">Enlaces Rápidos</h4>
+          <ul class="footer-links">
+            <li><a href="#inicio" data-i18n="nav_home">Inicio</a></li>
+            <li><a href="#cursos" data-i18n="nav_courses">Cursos</a></li>
+            <li><a href="#membresias" data-i18n="nav_memberships">Membresías</a></li>
+            <li><a href="aula.html" data-i18n="nav_classroom">Mi Aula Virtual</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer_legal_title">Legal & Seguridad</h4>
+          <ul class="footer-links">
+            <li><a href="#faq" data-i18n="footer_terms">Términos y Condiciones</a></li>
+            <li><a href="#faq" data-i18n="footer_privacy">Política de Privacidad</a></li>
+            <li><a href="#faq" data-i18n="footer_refund">Garantía de Devolución</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer_newsletter_title">Recibe nuestra Guía Gratuita</h4>
+          <p style="font-size: 0.875rem; color: #94A3B8;" data-i18n="footer_newsletter_desc">Suscríbete y descarga el ebook 'Guía de Maternidad Consciente, Primerizas y Nutrición Infantil'.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert(currentLanguage === 'es' ? '¡Gracias por suscribirte! Te hemos enviado la guía a tu correo.' : 'Thank you! The guide has been sent to your email.');">
+            <input type="email" placeholder="Tu correo aquí..." required>
+            <button type="submit" class="btn btn-primary btn-sm" data-i18n="footer_newsletter_btn">Enviar</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div data-i18n="footer_copyright">© 2026 Mamás Fuertes. Todos los derechos reservados.</div>
+        <div>Cifrado SSL 256-bit • Stripe & PayPal Verified</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       10. MODAL DE DETALLES Y TEMARIO DEL CURSO
+       ======================================================================== -->
+  <div class="modal-overlay" id="detailsModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 id="detailsModalTitle">Detalles del Curso</h3>
+        <button class="modal-close-btn" aria-label="Cerrar modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <p id="detailsModalDesc" style="color: var(--text-muted); margin-bottom: 1rem;"></p>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; padding: 0.75rem 1rem; background-color: var(--primary-light); border-radius: var(--radius-sm);">
+          <div><strong>Especialista:</strong> <span id="detailsModalInstructor"></span></div>
+          <div><strong id="detailsModalPrice" style="color: var(--primary); font-size: 1.25rem;"></strong></div>
+        </div>
+
+        <h4 data-i18n="modal_details_modules" style="margin-bottom: 0.75rem;">Módulos incluidos:</h4>
+        <div id="detailsModalModules"></div>
+
+        <div style="margin-top: 1.5rem; text-align: center;">
+          <button class="btn btn-primary btn-block" id="detailsModalBuyBtn" data-i18n="course_btn_buy">Comprar Curso Ahora</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       11. MODAL DE CHECKOUT (STRIPE & PAYPAL)
+       ======================================================================== -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 data-i18n="checkout_modal_title">Finalizar Compra Segura</h3>
+        <button class="modal-close-btn" aria-label="Cerrar modal">✕</button>
+      </div>
+      <div class="modal-body">
+        
+        <!-- Vista del Formulario de Pago -->
+        <div id="checkoutFormView">
+          <!-- Resumen de Pedido -->
+          <div class="order-summary-box">
+            <div class="order-summary-row">
+              <span data-i18n="checkout_item_label">Producto seleccionado:</span>
+              <strong id="checkoutItemTitle">-</strong>
+            </div>
+            <div class="order-summary-row">
+              <span data-i18n="checkout_summary">Precio regular:</span>
+              <span id="checkoutItemPrice">-</span>
+            </div>
+            <div class="order-summary-row total">
+              <span data-i18n="checkout_total">Total a pagar:</span>
+              <span id="checkoutTotalPrice">-</span>
+            </div>
+          </div>
+
+          <!-- Cupón de Descuento -->
+          <div class="form-group">
+            <label data-i18n="checkout_coupon_label">¿Tienes un cupón de descuento?</label>
+            <div class="coupon-group">
+              <input type="text" id="couponInput" class="form-control" placeholder="Ej: MAMA20">
+              <button type="button" class="btn btn-secondary btn-sm" id="applyCouponBtn" data-i18n="checkout_coupon_btn">Aplicar</button>
+            </div>
+            <small id="couponFeedback" style="font-weight: 600; font-size: 0.8rem;"></small>
+          </div>
+
+          <!-- Datos del Alumno -->
+          <div class="form-group">
+            <label data-i18n="checkout_form_name">Nombre Completo</label>
+            <input type="text" id="buyerName" class="form-control" placeholder="Ana García" required>
+          </div>
+          <div class="form-group">
+            <label data-i18n="checkout_form_email">Correo Electrónico (Aquí recibirás tus accesos)</label>
+            <input type="email" id="buyerEmail" class="form-control" placeholder="ana@ejemplo.com" required>
+          </div>
+
+          <!-- Pestañas de Métodos de Pago -->
+          <div class="checkout-tabs">
+            <button type="button" class="checkout-tab-btn active" id="tabStripe" data-i18n="checkout_tabs_stripe">💳 Tarjeta (Stripe)</button>
+            <button type="button" class="checkout-tab-btn" id="tabPaypal" data-i18n="checkout_tabs_paypal">🅿️ PayPal Express</button>
+          </div>
+
+          <!-- Formulario Stripe -->
+          <div id="stripePaymentForm">
+            <div class="form-group">
+              <label data-i18n="checkout_form_card">Número de Tarjeta</label>
+              <input type="text" id="cardNumber" class="form-control" placeholder="4242 4242 4242 4242" maxlength="19">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label data-i18n="checkout_form_exp">MM / AA</label>
+                <input type="text" id="cardExp" class="form-control" placeholder="12 / 28" maxlength="7">
+              </div>
+              <div class="form-group">
+                <label data-i18n="checkout_form_cvc">CVC</label>
+                <input type="text" id="cardCvc" class="form-control" placeholder="123" maxlength="4">
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-block" id="btnPayStripe" data-i18n="checkout_btn_pay_stripe">Pagar con Tarjeta Segura</button>
+          </div>
+
+          <!-- Formulario PayPal -->
+          <div id="paypalPaymentForm" style="display: none; text-align: center; padding: 1rem 0;">
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+              Serás redirigida al portal seguro de PayPal para autorizar tu pago con tu saldo o tarjeta vinculada.
+            </p>
+            <button type="button" class="btn btn-accent btn-block" id="btnPayPaypal" style="background: #0070BA;" data-i18n="checkout_btn_pay_paypal">Continuar con PayPal</button>
+          </div>
+
+          <div class="security-badge-note" data-i18n="checkout_security_note">
+            🔒 Pagos 100% cifrados con SSL de 256 bits y garantía de reembolso de 14 días.
+          </div>
+        </div>
+
+        <!-- Vista de Éxito de Compra -->
+        <div id="checkoutSuccessView" style="display: none; text-align: center; padding: 1.5rem 0;">
+          <div style="font-size: 3.5rem; margin-bottom: 1rem;">🎉💐✨</div>
+          <h3 data-i18n="checkout_success_title" style="margin-bottom: 0.75rem;">¡Felicidades y bienvenida a Mamás Fuertes!</h3>
+          <p data-i18n="checkout_success_msg" style="color: var(--text-muted); margin-bottom: 2rem;">
+            Tu compra ha sido procesada con éxito. Ya puedes ingresar a tu Aula Virtual para comenzar.
+          </p>
+          <button class="btn btn-primary btn-block" onclick="goToClassroom()" data-i18n="checkout_btn_go_classroom">Ir a Mi Aula Virtual Ahora</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       12. CHATBOT ASISTENTE VIRTUAL 24/7 ("ALMA")
+       ======================================================================== -->
+  <button class="chat-launcher-btn" id="chatLauncherBtn" aria-label="Abrir chat de soporte">
+    <span>💬</span>
+    <div class="chat-badge-pulse"></div>
+  </button>
+
+  <div class="chat-widget-box" id="chatWidgetBox">
+    <div class="chat-header">
+      <div class="chat-assistant-info">
+        <div class="chat-avatar">🌸</div>
+        <div class="chat-meta">
+          <div class="chat-name" data-i18n="chat_header_name">Alma - Asistente Mamás Fuertes</div>
+          <div class="chat-status"><span class="chat-status-dot"></span> <span data-i18n="chat_header_status">En línea 24/7 • Respuestas instantáneas</span></div>
+        </div>
+      </div>
+      <button class="chat-close-btn" id="chatCloseBtn" aria-label="Cerrar chat">✕</button>
+    </div>
+
+    <!-- Cuerpo de Mensajes -->
+    <div class="chat-messages-body" id="chatMessagesBody">
+      <div class="chat-typing" id="chatTypingIndicator">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Sugerencias Rápidas por Temas -->
+    <div class="chat-quick-actions">
+      <button class="chat-quick-pill" data-prompt="30 años" data-i18n="chat_quick_q1">🌸 ¿Consejos para ser madre primeriza a los 30-35 años?</button>
+      <button class="chat-quick-pill" data-prompt="hiperactivo" data-i18n="chat_quick_q2">🧠 ¿Cómo comprender a mi hijo que es muy hiperactivo?</button>
+      <button class="chat-quick-pill" data-prompt="alimentacion" data-i18n="chat_quick_q3">🥗 ¿Qué curso me enseña la alimentación según la edad?</button>
+      <button class="chat-quick-pill" data-prompt="bebé" data-i18n="chat_quick_q4">👶 ¿Cómo ayudar a mi bebé de 0-12 meses a dormir mejor?</button>
+    </div>
+
+    <!-- Formulario de Entrada -->
+    <div class="chat-footer">
+      <form class="chat-form" id="chatForm">
+        <input type="text" id="chatInput" placeholder="Escribe tu pregunta sobre primerizas, alimentación o cursos..." data-i18n="chat_input_placeholder" autocomplete="off">
+        <button type="submit" class="chat-send-btn" aria-label="Enviar mensaje">➤</button>
+      </form>
+      <div class="chat-whatsapp-banner">
+        <a href="javascript:void(0)" onclick="openWhatsAppDirect()" class="chat-whatsapp-link">
+          <span>📲</span> <span data-i18n="chat_whatsapp_btn">Chatear con una Educadora por WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts JavaScript -->
+  <script src="js/i18n.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
